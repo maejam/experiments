@@ -1,0 +1,130 @@
+[project]
+name = "Workfloz"
+version = "0.0.1"
+description = "A simple library for building complex workflows."
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "Maël Jamet", email = "maeljamet@hotmail.com"}]
+keywords = [
+    "workflow",
+    "machine learning",
+    "mlflow",
+    "huggingface",
+    "scikit-learn",
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Framework :: workfloz",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.8"
+dependencies = [
+
+]
+
+# [project.optional-dependencies]
+
+[project.urls]
+# Donate = ""
+# Documentation = ""
+# Changelog = ""
+"Source Code" = "https://github.com/maejam/workfloz"
+# "Issue Tracker" = ""
+
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "workfloz"
+
+[tool.flit.sdist]
+include = []
+exclude = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "error",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["workfloz", "tests"]
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.semantic_release]
+major_on_zero = false
+version_toml = ["pyproject.toml:project.version"]
+build_command = """
+    python -m pip install flit~=3.9
+    flit build
+"""
+
+[tool.semantic_release.changelog]
+template_dir = "templates"
+exclude_commit_patterns = []
+
+# [tool.semantic_release.commit_author]
+# env = "GIT_COMMIT_AUTHOR"
+# default = "semantic-release <semantic-release>"
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = ["build", "chore", "ci", "docs", "feat", "fix", "perf", "style", "refactor", "test"]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf"]
+default_bump_level = 0
+
+[tool.semantic_release.remote]
+ignore_token_for_push = true
+
+# [tool.semantic_release.publish]
+# dist_glob_patterns = ["dist/*"]
+# upload_to_vcs_release = true
+
+[tool.mypy]
+python_version = "3.8"
+files = ["src/workfloz"]
+show_error_codes = true
+pretty = true
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    # libraries that do not implement type checking
+]
+ignore_missing_imports = true
+
+[tool.ruff]
+src = ["src"]
+fix = true
+show-fixes = true
+output-format = "full"
+
+[tool.ruff.lint]
+select = [
+    "B",    # flake8-bugbear
+    "C901", # McCabe complexity
+    # "D",    # pydocstyle
+    "E",    # pycodestyle error
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "W",    # pycodestyle warning
+]
+ignore-init-module-imports = true
+
+# [tool.ruff.lint.pydocstyle]
+# convention = "google"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+[tool.ruff.format]
+docstring-code-format = true  # format code examples in docstrings
