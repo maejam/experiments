@@ -56,8 +56,8 @@ filterwarnings = [
 branch = true
 source = ["workfloz", "tests"]
 
-[tool.coverage.paths]
-source = ["src", "*/site-packages"]
+# [tool.coverage.paths]
+# source = ["src", "*/site-packages"]
 
 [tool.semantic_release]
 major_on_zero = false

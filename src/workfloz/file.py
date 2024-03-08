@@ -4,24 +4,12 @@ def my_func() -> int:
 
 class Test:
     """This is a test class."""
-    arg =   2
-def bad_func()->None:
-    print( 'bad!!!' )
+
+    arg = 2
 
 
+def bad_func() -> None:
+    print("bad!!!")
 
 
-
-a=1
-
-
-
-
-
-
-
-
-
-
-
-
+a = 1
