@@ -1,3 +1,3 @@
 # Workfloz
 
-![tests](https://github.com/maejam/Workfloz/workflows/Tests/badge.svg?branch=main)
+![tests](https://github.com/maejam/Workfloz/workflows/tests/badge.svg?branch=main)
