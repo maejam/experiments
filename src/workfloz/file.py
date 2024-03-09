@@ -13,4 +13,5 @@ def bad_func() -> None:
 
 
 a = 1
-b=2
+b = 2
+c = 3
