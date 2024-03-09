@@ -1,20 +1,28 @@
-name: Tests
+name: Test and Release
 on:
   push:
     branches:
       - main
-      - '*.x'
     paths-ignore:
       - 'docs/**'
       - '*.md'
       - '*.rst'
+      - '*.toml'
+      - '*.yml'
+      - '*.yaml'
+      - '*.ini'
   pull_request:
     paths-ignore:
       - 'docs/**'
       - '*.md'
       - '*.rst'
+      - '*.toml'
+      - '*.yml'
+      - '*.yaml'
+      - '*.ini'
 
 jobs:
+
   tests:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
@@ -22,14 +30,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {name: Linux, python: '3.12', os: ubuntu-latest, tox: py312}
-          - {name: Windows, python: '3.12', os: windows-latest, tox: py312}
-          - {name: Mac, python: '3.12', os: macos-latest, tox: py312}
+          - {name: 'Linux', python: '3.12', os: ubuntu-latest, tox: py312}
+          - {name: 'Windows', python: '3.12', os: windows-latest, tox: py312}
+          - {name: 'Mac', python: '3.12', os: macos-latest, tox: py312}
           - {name: '3.11', python: '3.11', os: ubuntu-latest, tox: py311}
           - {name: '3.10', python: '3.10', os: ubuntu-latest, tox: py310}
           - {name: '3.9', python: '3.9', os: ubuntu-latest, tox: py39}
           - {name: '3.8', python: '3.8', os: ubuntu-latest, tox: py38}
-          - {name: Typing, python: '3.12', os: ubuntu-latest, tox: typing}
+          - {name: 'Typing', python: '3.12', os: ubuntu-latest, tox: typing}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,10 +46,55 @@ jobs:
           cache: 'pip'
           cache-dependency-path: requirements/*.txt
       - name: cache mypy
+        if: matrix.tox == 'typing'
         uses: actions/cache@v4
         with:
           path: ./.mypy_cache
           key: mypy|${{ matrix.python }}|${{ hashFiles('pyproject.toml') }}
-        if: matrix.tox == 'typing'
       - run: pip install tox
       - run: tox run -e ${{ matrix.tox }}
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: tests
+    if: github.event_name == 'push'
+    # environment:
+    #   name: pypi
+    #   url: https://pypi.org/project/python-semantic-release/
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+      - name: Python Semantic Release
+        id: release
+        uses: ./
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          root_options: "-vv"
+
+      # see https://docs.pypi.org/trusted-publishers/
+      - name: Publish package distributions to PyPI
+        id: pypi-publish
+        # NOTE: DO NOT wrap the conditional in ${{ }} as it will always evaluate to true.
+        # See https://github.com/actions/runner/issues/1173
+        if: steps.release.outputs.released == 'true'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          verbose: true
+
+      - name: Publish package distributions to GitHub Releases
+        id: github-release
+
+        # NOTE: DO NOT wrap the conditional in ${{ }} as it will always evaluate to true.
+        # See https://github.com/actions/runner/issues/1173
+        if: steps.release.outputs.released == 'true'
+        uses: python-semantic-release/upload-to-gh-release@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.release.outputs.tag }}
+
