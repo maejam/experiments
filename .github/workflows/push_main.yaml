@@ -23,4 +23,4 @@ jobs:
 
   release:
     needs: tests
-    uses: ./.github/workflos/_release.yaml
+    uses: ./.github/workflows/_release.yaml
