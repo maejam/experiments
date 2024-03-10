@@ -1,16 +1,5 @@
-name: Test and Release
+name: Pull requests
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'docs/**'
-      - '*.md'
-      - '*.rst'
-      - '*.toml'
-      - '*.yml'
-      - '*.yaml'
-      - '*.ini'
   pull_request:
     paths-ignore:
       - 'docs/**'
@@ -24,7 +13,7 @@ on:
 jobs:
 
   tests:
-    uses: ./.github/workflows/reusables/tests.yaml
+    uses: ./.github/workflows/_tests.yaml
 
   # release:
   #   name: Release
