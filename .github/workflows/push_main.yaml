@@ -22,5 +22,8 @@ jobs:
     uses: ./.github/workflows/_tests.yaml
 
   release:
+    permissions:
+      id-token: write
+      contents: write
     needs: tests
     uses: ./.github/workflows/_release.yaml
