@@ -8,9 +8,9 @@ jobs:
   bump_version:
     name: Semantic Release
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: write
+    # permissions:
+    #   id-token: write
+    #   contents: write
     steps:
       - uses: actions/checkout@v4
         with:
