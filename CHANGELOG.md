@@ -2,6 +2,27 @@
 
 
 
+## v0.1.1 (2024-03-11)
+
+### Fix
+
+* fix: change to toto after hesitating
+
+* change to tata
+
+* change to toto ([`0fea38d`](https://github.com/maejam/Workfloz/commit/0fea38d42f12d6d9a4b0667d62bbe7e3e1363b19))
+
+### Unknown
+
+* Paul (#5)
+
+* ci: ok
+
+* chore: useless commit
+
+* paul tutu ([`ede457b`](https://github.com/maejam/Workfloz/commit/ede457bcfde9e183707582bfa3d2f0f7a596f911))
+
+
 ## v0.1.0 (2024-03-10)
 
 ### Breaking
