@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 a = 1
-b = "tutu"
+b = "tata"
 
 
 def my_func() -> int:
