@@ -2,6 +2,27 @@
 
 
 
+## v0.3.0 (2024-03-12)
+
+### Feature
+
+* feat: merge Feat/brch (#7)
+
+* fix: sthg
+
+* jhfjhfj
+
+* ci(pre-commit.ci) autofix
+
+* hghghg
+
+* ci(pre-commit.ci) autofix
+
+---------
+
+Co-authored-by: pre-commit-ci[bot] &lt;66853113+pre-commit-ci[bot]@users.noreply.github.com&gt; ([`615cefa`](https://github.com/maejam/experiments/commit/615cefa4e380b7941ea6595392a1d40c3eae2d32))
+
+
 ## v0.2.0 (2024-03-12)
 
 ### Feature
