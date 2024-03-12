@@ -2,6 +2,15 @@
 
 
 
+## v0.2.0 (2024-03-12)
+
+### Feature
+
+* feat: awesome feature modified ([`dc6714e`](https://github.com/maejam/experiments/commit/dc6714e8d2bc2c18b1981a05a7a21cef5bb10cb0))
+
+* feat: my awesome feature ([`d73bebf`](https://github.com/maejam/experiments/commit/d73bebf824132031b372b60e36a44d2abaf02df7))
+
+
 ## v0.1.2 (2024-03-12)
 
 ### Fix
