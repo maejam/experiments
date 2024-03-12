@@ -86,11 +86,12 @@ patch_tags = ["fix", "perf"]
 [tool.semantic_release.remote]
 ignore_token_for_push = true
 
-[[tool.mypy.overrides]]
-module = [
-    # libraries that do not implement type checking
-]
-ignore_missing_imports = true
+[tool.mypy]
+python_version = "3.8"
+files = ["src/workfloz"]
+show_error_codes = true
+pretty = true
+strict = true
 
 [tool.ruff]
 src = ["src"]
