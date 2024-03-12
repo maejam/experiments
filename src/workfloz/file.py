@@ -11,7 +11,7 @@ class Myclass(ABC):
 
 a = 1
 b = "toto"
-c = 42
+c=42
 d=54
 
 
