@@ -1,6 +1,6 @@
 [project]
 name = "Workfloz"
-version = "1.0.0"
+version = "0.4.0"
 description = "A simple library for building complex workflows."
 readme = "README.md"
 license = {file = "LICENSE"}
