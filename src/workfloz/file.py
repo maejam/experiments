@@ -1,6 +1,6 @@
 from __future__ import annotations
-
 from abc import ABC, abstractmethod
+
 
 
 class Myclass(ABC):
@@ -13,8 +13,6 @@ class Myclass(ABC):
 a = 1
 b = "toto"
 c=42
-
-
 def my_func() -> int:
     return 1
 
