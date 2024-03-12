@@ -1,0 +1,29 @@
+name: Push on main
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - '*.rst'
+      - '*.toml'
+      - '*.yml'
+      - '*.yaml'
+      - '*.ini'
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+
+  tests:
+    uses: ./.github/workflows/_tests.yaml
+
+  release:
+    permissions:
+      id-token: write
+      contents: write
+    needs: tests
+    uses: ./.github/workflows/_release.yaml
