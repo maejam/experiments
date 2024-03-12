@@ -8,7 +8,6 @@ on:
       - 'docs/**'
       - '*.md'
       - '*.rst'
-      - '*.toml'
       - '*.yml'
       - '*.yaml'
       - '*.ini'
