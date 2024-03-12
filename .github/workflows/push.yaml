@@ -1,4 +1,5 @@
-name: Push on main
+name: Push
+
 on:
   push:
     branches:
@@ -13,7 +14,7 @@ on:
       - '*.ini'
 
 concurrency:
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
