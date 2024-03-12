@@ -11,8 +11,8 @@ class Myclass(ABC):
 
 a = 1
 b = "toto"
-c=42
-d=54
+c = 42
+d = 54
 
 
 def my_func() -> int:
